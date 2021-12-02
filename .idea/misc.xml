@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/credi/OneDrive/Desktop/Android/app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
+        <entry key="..\:/Users/credi/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_friends.xml" value="0.1296875" />
         <entry key="..\:/Users/credi/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_home.xml" value="0.1743659420289855" />
+        <entry key="..\:/Users/credi/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_music.xml" value="0.20243902439024392" />
         <entry key="..\:/Users/credi/OneDrive/Desktop/Android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18125" />
       </map>
     </option>
