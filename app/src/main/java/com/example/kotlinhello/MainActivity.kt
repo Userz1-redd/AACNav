@@ -8,6 +8,7 @@ import com.example.kotlinhello.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var mBinding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

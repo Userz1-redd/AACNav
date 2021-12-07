@@ -1,5 +1,5 @@
 package com.example.kotlinhello
 
-fun main(){
+class MyFrinedsAdapter  {
 
 }
