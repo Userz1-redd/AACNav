@@ -1,14 +1,14 @@
-package com.example.kotlinhello
+package com.example.kotlinhello.Home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kotlinhello.databinding.FragmentMusicBinding
+import com.example.kotlinhello.databinding.FragmentSettingBinding
 
-class MusicFragment : Fragment() {
-    private var fragmentMusicBinding : FragmentMusicBinding? = null
+class SettingFragment : Fragment() {
+    private var fragmentMusicBinding : FragmentSettingBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -18,7 +18,7 @@ class MusicFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMusicBinding.inflate(inflater,container,false)
+        val binding = FragmentSettingBinding.inflate(inflater,container,false)
         fragmentMusicBinding = binding
         return fragmentMusicBinding!!.root
     }

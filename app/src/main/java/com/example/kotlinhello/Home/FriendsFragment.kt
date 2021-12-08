@@ -1,4 +1,4 @@
-package com.example.kotlinhello
+package com.example.kotlinhello.Home
 
 import android.os.Bundle
 import android.view.LayoutInflater

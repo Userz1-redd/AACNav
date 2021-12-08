@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
         <activity
+            android:name=".Login.FindPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Login.RegisterActivity"
             android:exported="false" />
         <activity
@@ -26,10 +29,10 @@
         </activity>
         <activity
             android:name=".Login.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:name=".Home.MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.kotlinhello.HomeFragment"
+        android:name="com.example.kotlinhello.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/friendsFragment"
-        android:name="com.example.kotlinhello.FriendsFragment"
+        android:name="com.example.kotlinhello.Home.FriendsFragment"
         android:label="fragment_friends"
         tools:layout="@layout/fragment_friends" />
     <fragment
-        android:id="@+id/musicFragment"
-        android:name="com.example.kotlinhello.MusicFragment"
-        android:label="fragment_music"
-        tools:layout="@layout/fragment_music" />
+        android:id="@+id/settingFragment"
+        android:name="com.example.kotlinhello.Home.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

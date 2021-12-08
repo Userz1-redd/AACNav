@@ -1,5 +1,6 @@
 package com.example.kotlinhello.Login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinhello.databinding.ActivityRegisterBinding
@@ -12,6 +13,10 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         mBinding.backBtn.setOnClickListener {
             finish()
+        }
+        mBinding.loginText.setOnClickListener {
+            var intent = Intent(this,SigninActivity::class.java)
+            startActivity(intent)
         }
     }
 }

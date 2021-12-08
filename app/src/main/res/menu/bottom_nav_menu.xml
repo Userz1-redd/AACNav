@@ -2,20 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:title="Home"
+        android:title="홈"
         android:icon="@drawable/ic_home"
         >
     </item>
     <item
         android:id="@+id/friendsFragment"
-        android:title="Friends"
+        android:title="친구"
         android:icon="@drawable/ic_friends"
         >
     </item>
     <item
-        android:id="@+id/musicFragment"
-        android:title="Music"
-        android:icon="@drawable/ic_music"
+        android:id="@+id/settingFragment"
+        android:title="설정"
+        android:icon="@drawable/ic_setting"
         >
     </item>
+
 </menu>

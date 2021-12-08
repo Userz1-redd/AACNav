@@ -1,9 +1,10 @@
-package com.example.kotlinhello
+package com.example.kotlinhello.Home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.kotlinhello.R
 import com.example.kotlinhello.databinding.ActivityMainBinding
 
 
