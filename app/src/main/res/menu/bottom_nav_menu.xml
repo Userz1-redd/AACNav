@@ -13,6 +13,11 @@
         >
     </item>
     <item
+        android:id="@+id/roomFragment"
+        android:title="채팅방"
+        android:icon="@drawable/ic_message">
+    </item>
+    <item
         android:id="@+id/settingFragment"
         android:title="설정"
         android:icon="@drawable/ic_setting"

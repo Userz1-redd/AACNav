@@ -34,7 +34,7 @@
             />
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/text_name"
+
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:hint="Name"
@@ -44,13 +44,14 @@
     >
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/text_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
 </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_email"
+
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="email"
@@ -59,6 +60,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
@@ -66,7 +68,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_pw"
+
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="password"
@@ -76,6 +78,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_pw"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"
@@ -106,6 +109,7 @@
             />
     </LinearLayout>
     <Button
+        android:id="@+id/signup_btn"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -114,6 +118,7 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:text="Sign Up"
+        android:clickable="true"
         />
     <TextView
         android:layout_width="match_parent"
@@ -126,6 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:src="@drawable/ic_google_btn"
+        android:clickable="true"
         />
     <TextView
         android:id="@+id/login_text"

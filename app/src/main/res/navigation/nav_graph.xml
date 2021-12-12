@@ -20,4 +20,9 @@
         android:name="com.example.kotlinhello.Home.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.example.kotlinhello.Home.RoomFragment"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" />
 </navigation>

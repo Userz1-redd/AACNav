@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kotlinhello.DataClass.MyFriend
+import com.example.kotlinhello.DataClass.MemberRegisterDTO
 import com.example.kotlinhello.databinding.FragmentFriendsBinding
 
 class FriendsFragment : Fragment() {
@@ -13,11 +13,8 @@ class FriendsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var friendsList = ArrayList<MyFriend>()
-        for(i in 1..10){
-            var testFriend = MyFriend(name = "친구${i}", phonenumber = "000-0000-0000")
-            friendsList.add(testFriend)
-        }
+        var friendsList = ArrayList<MemberRegisterDTO>()
+
     }
 
     override fun onCreateView(
