@@ -1,9 +1,9 @@
-package com.example.kotlinhello.DataClass
+package com.example.kotlinhello.model
 
 import android.util.Log
 import com.google.gson.annotations.SerializedName
 
-data class MemberRegisterDTO(
+data class UserDTO(
     @SerializedName("name")
     var name : String,
     @SerializedName("email")
@@ -11,8 +11,8 @@ data class MemberRegisterDTO(
     @SerializedName("password")
     var password : String)
 {
-    private val TAG = "MyFriend"
+    private val TAG = "TAG"
     init {
-        Log.d(TAG, "MyFriend Construct ")
+        Log.d(TAG, "User Construct ")
     }
 }

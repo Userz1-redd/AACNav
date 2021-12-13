@@ -6,8 +6,14 @@ object API{
     const val SEARCH_PHOTO : String ="search/photos"
     const val SEARCH_USERS : String ="search/users"
     const val REGIST_USER : String = "members/register"
+    const val LOGIN_USER : String = "members/login"
+    const val UPDATE_NAME : String = "members/name"
+    const val UPDATE_PASSWD : String = "members/password"
+    const val DELETE_USER : String = "members"
+
 }
 enum class RESPONSE_STATE{
     OKAY,
+    CHECK,
     FAIL
 }
