@@ -39,5 +39,14 @@ interface IRetrofit {
         "content-type: application/json")
     @DELETE(API.DELETE_USER)
     fun deleteUser()
+    /*유저관련 API*/
+
+
+    //게시판관련API
+    @GET(API.BASE_BOARD)
+    fun getBoardList() : Call<JsonElement>
+
+
+
 }
 

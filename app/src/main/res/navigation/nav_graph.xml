@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.kotlinhello.Home.HomeFragment"
+        android:name="com.example.kotlinhello.Home.BoardFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_board" />
     <fragment
         android:id="@+id/friendsFragment"
         android:name="com.example.kotlinhello.Home.FriendsFragment"

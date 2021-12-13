@@ -35,10 +35,12 @@
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:hint="email"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"
+        app:boxStrokeColor="@color/purple_200"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,13 +54,13 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:hint="password"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"
-        app:endIconMode="password_toggle">
-        >
-
+        app:endIconMode="password_toggle"
+        app:boxStrokeColor="@color/purple_200"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_pw"
             android:layout_width="match_parent"

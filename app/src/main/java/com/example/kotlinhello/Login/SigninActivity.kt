@@ -2,11 +2,14 @@ package com.example.kotlinhello.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlinhello.Constants.RESPONSE_STATE
 import com.example.kotlinhello.Home.MainActivity
 import com.example.kotlinhello.databinding.ActivitySigninBinding
 import com.example.kotlinhello.model.UserLoginDTO
+import com.example.kotlinhello.retrofit.RetrofitManager
 
 class SigninActivity : AppCompatActivity() {
     private val TAG = "Signin"
@@ -22,7 +25,7 @@ class SigninActivity : AppCompatActivity() {
             var email = mBinding.textEmail.text.toString()
             var pwd = mBinding.textPw.text.toString()
             var send_data = UserLoginDTO(email,pwd)
-            /*RetrofitManager.instance.loginUser(param = send_data,completion = {
+            RetrofitManager.instance.loginUser(param = send_data,completion = {
                     reponseState ->
                 when(reponseState){
                     RESPONSE_STATE.OKAY ->{
@@ -44,10 +47,13 @@ class SigninActivity : AppCompatActivity() {
 
             })
 
-             */
+
+            /*
             Toast.makeText(this,"Login Success",Toast.LENGTH_LONG).show()
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+
+             */
         }
         mBinding.registerText.setOnClickListener{
             var intent = Intent(this,RegisterActivity::class.java)
