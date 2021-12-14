@@ -1,7 +1,7 @@
 package com.example.kotlinhello.Constants
 
 object API{
-    const val BASE_URL = "http://3.35.166.242:8080/"
+    const val BASE_URL = "http://3.38.97.106:8080/"
     const val CLIENT_ID : String = "gRQEYwHhWS5L3m8tdgVALFqOidChGIIkUNLY7mkR4PM"
     const val SEARCH_PHOTO : String ="search/photos"
     const val SEARCH_USERS : String ="search/users"
@@ -15,6 +15,7 @@ object API{
 
     //게시판관련
     const val BASE_BOARD : String = "boards"
+    const val KEYWORD_BOARD : String = "boards/title/{string}"
     const val UPDATE_BOARD : String = "boards/{noticeId}"
 
 

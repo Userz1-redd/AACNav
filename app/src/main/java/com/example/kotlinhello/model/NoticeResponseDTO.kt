@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class NoticeResponseDTO(
+    @SerializedName("id") var id : Long,
     @SerializedName("title") var title : String,
     @SerializedName("writerName") var writerName : String,
     @SerializedName("views") var views : Long,

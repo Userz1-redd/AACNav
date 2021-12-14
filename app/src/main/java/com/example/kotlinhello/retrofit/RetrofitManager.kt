@@ -85,11 +85,12 @@ class RetrofitManager {
                             body.forEach{
                                 item ->
                                 val resultItemObject = item.asJsonObject
+                                val id = resultItemObject.get("id").asLong
                                 val title = resultItemObject.get("title").asString
                                 val writerName = resultItemObject.get("writerName").asString
                                 val views = resultItemObject.get("views").asLong
                                 val date = resultItemObject.get("date").asString
-                                val obj = NoticeResponseDTO(title,writerName,views, date)
+                                val obj = NoticeResponseDTO(id,title,writerName,views, date)
                                 list.add(obj)
                             }
                             completion(RESPONSE_STATE.OKAY,list)}
@@ -104,6 +105,44 @@ class RetrofitManager {
         })
 
     }
+    fun getKeywordBoardList(keyword : String,completion: (RESPONSE_STATE, ArrayList<NoticeResponseDTO>?) -> Unit){
+        val call = iRetrofit?.getKeywordBoardList(keyword).let{
+            it
+        }?: return
+        call.enqueue(object : retrofit2.Callback<JsonElement>{
+            override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
+                Log.d(TAG, "onResponse: called /t:${response.raw()}")
+                Log.d(TAG, "onResponse: ${response.body()}")
+                when(response.code()){
+                    200->{
+                        response.body()?.let{
+                            val body = it.asJsonArray
+                            Log.d(TAG, "body: ${body}")
+                            val list = ArrayList<NoticeResponseDTO>()
+                            body.forEach{
+                                    item ->
+                                val resultItemObject = item.asJsonObject
+                                val id = resultItemObject.get("id").asLong
+                                val title = resultItemObject.get("title").asString
+                                val writerName = resultItemObject.get("writerName").asString
+                                val views = resultItemObject.get("views").asLong
+                                val date = resultItemObject.get("date").asString
+                                val obj = NoticeResponseDTO(id,title,writerName,views, date)
+                                list.add(obj)
+                            }
+                            completion(RESPONSE_STATE.OKAY,list)}
+                    }
+                    else -> {completion(RESPONSE_STATE.CHECK,null)}
+                }
+            }
+            override fun onFailure(call: Call<JsonElement>, t: Throwable) {
+                Log.d(TAG, "onFailure: called")
+                completion(RESPONSE_STATE.FAIL,null)
+            }
+        })
+
+    }
+
 
     //사진검색 api 호출
     fun searchPhotos(searchTerm: String?, completion: (RESPONSE_STATE,String) -> Unit){

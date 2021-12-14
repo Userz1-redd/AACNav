@@ -45,6 +45,8 @@ interface IRetrofit {
     //게시판관련API
     @GET(API.BASE_BOARD)
     fun getBoardList() : Call<JsonElement>
+    @GET(API.KEYWORD_BOARD)
+    fun getKeywordBoardList(@Path("string") string : String) : Call<JsonElement>
 
 
 
