@@ -1,6 +1,7 @@
 package com.example.kotlinhello.retrofit
 
 import com.example.kotlinhello.Constants.API
+import com.example.kotlinhello.model.NoticeDTO
 import com.example.kotlinhello.model.UserDTO
 import com.example.kotlinhello.model.UserLoginDTO
 import com.google.gson.JsonElement
@@ -46,8 +47,11 @@ interface IRetrofit {
     @GET(API.BASE_BOARD)
     fun getBoardList() : Call<JsonElement>
     @GET(API.KEYWORD_BOARD)
-    fun getKeywordBoardList(@Path("string") string : String) : Call<JsonElement>
-
+    fun getKeywordBoardList(@Path("string")  param : String) : Call<JsonElement>
+    @Headers("accept: application/json",
+        "content-type: application/json")
+    @POST(API.BASE_BOARD)
+    fun postBoard(@Body param : NoticeDTO): Call<JsonElement>
 
 
 }

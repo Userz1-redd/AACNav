@@ -3,6 +3,7 @@ package com.example.kotlinhello.retrofit
 import android.util.Log
 import com.example.kotlinhello.Constants.API
 import com.example.kotlinhello.Constants.RESPONSE_STATE
+import com.example.kotlinhello.model.NoticeDTO
 import com.example.kotlinhello.model.NoticeResponseDTO
 import com.example.kotlinhello.model.UserDTO
 import com.example.kotlinhello.model.UserLoginDTO
@@ -43,7 +44,7 @@ class RetrofitManager {
         })
 
     }
-    //회원가입 api호출
+    //로그인 api호출
     fun loginUser(param : UserLoginDTO, completion: (RESPONSE_STATE) -> Unit){
         val term = param.let{
             it
@@ -138,6 +139,31 @@ class RetrofitManager {
             override fun onFailure(call: Call<JsonElement>, t: Throwable) {
                 Log.d(TAG, "onFailure: called")
                 completion(RESPONSE_STATE.FAIL,null)
+            }
+        })
+
+    }
+
+    //게시글 작성
+    fun postBoard(param : NoticeDTO, completion: (RESPONSE_STATE) -> Unit){
+        val term = param.let{
+            it
+        }
+        val call = iRetrofit?.postBoard(param = term).let{
+            it
+        }?: return
+        call.enqueue(object : retrofit2.Callback<JsonElement>{
+            override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
+                Log.d(TAG, "onResponse: called /t:${response.raw()}")
+                when(response.code()){
+                    200->{completion(RESPONSE_STATE.OKAY)}
+                    else -> {completion(RESPONSE_STATE.CHECK)}
+                }
+            }
+
+            override fun onFailure(call: Call<JsonElement>, t: Throwable) {
+                Log.d(TAG, "onFailure: called")
+                completion(RESPONSE_STATE.FAIL)
             }
         })
 

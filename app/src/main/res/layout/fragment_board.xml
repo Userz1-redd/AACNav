@@ -79,7 +79,37 @@
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"
+            />
+        <TextView
+            android:id="@+id/search_history_recycler_view_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근 검색어"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_history_recycler_view"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_add"
+        android:backgroundTint="@color/purple_200"
+        app:borderWidth="0dp"
+        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
