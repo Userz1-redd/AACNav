@@ -192,7 +192,7 @@ class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.
         return true
     }
 
-    override fun jonQueryTextChange(newText: String?): Boolean {
+    override fun onQueryTextChange(newText: String?): Boolean {
         val userInputText = newText ?: ""
         if(userInputText.count()==12){
             Toast.makeText(App.instance,"검색어는 12자 까지만 입력 가능합니다",Toast.LENGTH_SHORT).show()
