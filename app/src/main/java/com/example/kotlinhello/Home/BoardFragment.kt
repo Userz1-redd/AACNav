@@ -20,6 +20,7 @@ import com.example.kotlinhello.Constants.SharedPreferenceManager
 import com.example.kotlinhello.Constants.toSimpleString
 import com.example.kotlinhello.Home.BoardRecyclerView.BoardRecyclerViewAdapter
 import com.example.kotlinhello.Home.BoardRecyclerView.BoardSearchHistoryRecyclerViewAdapter
+import com.example.kotlinhello.Home.BoardRecyclerView.IBoardRecyclerView
 import com.example.kotlinhello.Home.BoardRecyclerView.ISearchHistoryRecyclerView
 import com.example.kotlinhello.R
 import com.example.kotlinhello.databinding.FragmentBoardBinding
@@ -30,14 +31,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.OnCheckedChangeListener, View.OnClickListener, ISearchHistoryRecyclerView {
+class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.OnCheckedChangeListener, View.OnClickListener
+    ,ISearchHistoryRecyclerView, IBoardRecyclerView {
     private val TAG = "TAG"
     private var mBinding : FragmentBoardBinding? = null
 
     //검색기록 배열
     private var searchHistory = ArrayList<SearchBoardData>()
 
-    //데이터
+    //게시판 데이터
     private var boardList  = ArrayList<NoticeResponseDTO>()
 
     //어댑터
@@ -66,7 +68,7 @@ class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.
                        Log.d(TAG, "게시판 로딩 성공 : ${reponseState} ")
                        boardList = responseBody!!
                        mBinding!!.boardRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                       this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter()
+                       this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter(this)
                        this.boardRecyclerViewAdapter.submitList(boardList)
                        mBinding!!.boardRecyclerView.adapter = this.boardRecyclerViewAdapter
                    }
@@ -169,7 +171,7 @@ class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.
                         Log.d(TAG, "게시판 검색 로딩 성공 : ${reponseState} ")
                         boardList = responseBody!!
                         mBinding!!.boardRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                        this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter()
+                        this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter(this)
                         this.boardRecyclerViewAdapter.submitList(boardList)
                         this.boardRecyclerViewAdapter.notifyDataSetChanged()
                         mBinding!!.boardRecyclerView.adapter = this.boardRecyclerViewAdapter
@@ -248,7 +250,7 @@ class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.
                     Log.d(TAG, "게시판 검색 로딩 성공 : ${reponseState} ")
                     this.boardList = responseBody!!
                     mBinding!!.boardRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                    this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter()
+                    this.boardRecyclerViewAdapter = BoardRecyclerViewAdapter(this)
                     this.boardRecyclerViewAdapter.submitList(this.boardList)
                     this.boardRecyclerViewAdapter.notifyDataSetChanged()
                     mBinding!!.boardRecyclerView.adapter = this.boardRecyclerViewAdapter
@@ -283,5 +285,40 @@ class BoardFragment : Fragment(),SearchView.OnQueryTextListener, CompoundButton.
             mBinding!!.searchHistoryRecyclerViewLabel.visibility =View.INVISIBLE
             mBinding!!.clearSearchHistoryButton.visibility = View.INVISIBLE
         }
+    }
+
+    override fun onClickBoard(position: Int) {
+       r_Detail_Board(boardList[position].id)
+    }
+
+
+    fun r_Detail_Board(param : Long){
+        RetrofitManager.instance.getDetailBoard(param,completion = {
+                reponseState,responseBody ->
+            when(reponseState){
+                RESPONSE_STATE.OKAY ->{
+                    Log.d(TAG, "게시판 세부정보 불러오기성공 : ${reponseState} ")
+                    var result = responseBody!!
+                    Log.d(TAG, "r_Detail_Board: ${result.content}")
+                    var intent = Intent(activity,BoardContentActivity::class.java)
+                    var bundle = Bundle()
+                    bundle.putSerializable("board_data",result)
+                    intent.putExtra("board_bundle",bundle)
+                    startActivity(intent)
+
+                }
+                RESPONSE_STATE.CHECK ->{
+                    Log.d(TAG, "게시판 로딩 실패: ${reponseState} ")
+                    Toast.makeText(App.instance,"게시판 로딩 실패",Toast.LENGTH_SHORT).show()
+                }
+                RESPONSE_STATE.FAIL -> {
+                    Log.d(TAG, "Server Closed")
+                    Toast.makeText(App.instance,"Server closed",Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        })
+
     }
 }

@@ -1,11 +1,17 @@
 package com.example.kotlinhello.Home.BoardRecyclerView
 
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinhello.databinding.LayoutBoardItemBinding
 import com.example.kotlinhello.model.NoticeResponseDTO
 
-class BoardItemViewHolder(private val binding : LayoutBoardItemBinding) :RecyclerView.ViewHolder(binding.root){
+class BoardItemViewHolder(private val binding : LayoutBoardItemBinding, boardItemInterface : IBoardRecyclerView) :RecyclerView.ViewHolder(binding.root), View.OnClickListener{
+    lateinit var boardItemInterface : IBoardRecyclerView
+    init{
+        this.boardItemInterface = boardItemInterface
+        binding.boardItemView.setOnClickListener(this)
+    }
 
     fun bindWithView(BoardItem : NoticeResponseDTO){
         binding.itemDate.text = BoardItem.date
@@ -15,5 +21,13 @@ class BoardItemViewHolder(private val binding : LayoutBoardItemBinding) :Recycle
 
         Log.d("TAG", "bindWithView: called")
 
+    }
+
+    override fun onClick(v: View?) {
+       when(v){
+           binding.boardItemView -> {
+               this.boardItemInterface.onClickBoard(adapterPosition)
+           }
+       }
     }
 }

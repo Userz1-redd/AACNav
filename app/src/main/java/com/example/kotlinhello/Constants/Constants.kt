@@ -16,7 +16,10 @@ object API{
     //게시판관련
     const val BASE_BOARD : String = "boards"
     const val KEYWORD_BOARD : String = "boards/title/{string}"
-    const val UPDATE_BOARD : String = "boards/{noticeId}"
+    const val DETAIL_BOARD : String = "boards/{noticeId}"
+    //댓글관련
+    const val BASE_COMMENT : String = "comments"
+    const val GET_COMMENT : String = "comments/{option}/{id}"
 
 
 }

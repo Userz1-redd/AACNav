@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinhello.databinding.LayoutBoardItemBinding
 import com.example.kotlinhello.model.NoticeResponseDTO
 
-class BoardRecyclerViewAdapter : RecyclerView.Adapter<BoardItemViewHolder>() {
+class BoardRecyclerViewAdapter(boardItemInterface : IBoardRecyclerView) : RecyclerView.Adapter<BoardItemViewHolder>() {
     private var boardList = ArrayList<NoticeResponseDTO>()
+    private var boardItemInterface = boardItemInterface
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardItemViewHolder {
         Log.d("TAG", "onCreateViewHolder:called ")
         val binding = LayoutBoardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return BoardItemViewHolder(binding)
+        return BoardItemViewHolder(binding, boardItemInterface)
     }
 
     override fun onBindViewHolder(holder: BoardItemViewHolder, position: Int) {

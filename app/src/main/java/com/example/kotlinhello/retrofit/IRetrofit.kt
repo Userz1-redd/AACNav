@@ -1,6 +1,7 @@
 package com.example.kotlinhello.retrofit
 
 import com.example.kotlinhello.Constants.API
+import com.example.kotlinhello.model.CommentDTO
 import com.example.kotlinhello.model.NoticeDTO
 import com.example.kotlinhello.model.UserDTO
 import com.example.kotlinhello.model.UserLoginDTO
@@ -52,6 +53,14 @@ interface IRetrofit {
         "content-type: application/json")
     @POST(API.BASE_BOARD)
     fun postBoard(@Body param : NoticeDTO): Call<JsonElement>
+    //각 게시판 세부정보(Content 포함)
+    @GET(API.DETAIL_BOARD)
+    fun getDetailBoard(@Path("noticeId") param : Long) : Call<JsonElement>
+    @POST(API.BASE_COMMENT)
+    fun postComment(@Body param : CommentDTO) : Call<JsonElement>
+    @GET(API.GET_COMMENT)
+    fun getCommentList(@Path("option") option: String,@Path("id") boardId : Long)
+     : Call<JsonElement>
 
 
 }
