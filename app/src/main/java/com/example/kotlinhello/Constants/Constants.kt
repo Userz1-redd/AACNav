@@ -19,7 +19,7 @@ object API{
     const val DETAIL_BOARD : String = "boards/{noticeId}"
     //댓글관련
     const val BASE_COMMENT : String = "comments"
-    const val GET_COMMENT : String = "comments/{option}/{id}"
+    const val GET_COMMENT : String = "comments/{id}"
 
 
 }

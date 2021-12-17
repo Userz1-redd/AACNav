@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinhello.databinding.LayoutCommentItemBinding
-import com.example.kotlinhello.model.CommentDTO
+import com.example.kotlinhello.model.CommentResponseDTO
 
 class CommentRecyclerViewAdapter : RecyclerView.Adapter<CommentItemViewHolder>() {
-    private var commentList = ArrayList<CommentDTO>()
+    private var commentList = ArrayList<CommentResponseDTO>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentItemViewHolder {
         val binding = LayoutCommentItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CommentItemViewHolder(binding)
@@ -18,7 +18,9 @@ class CommentRecyclerViewAdapter : RecyclerView.Adapter<CommentItemViewHolder>()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
         return commentList.size
+    }
+    fun submitList(commentList : ArrayList<CommentResponseDTO>){
+        this.commentList = commentList
     }
 }

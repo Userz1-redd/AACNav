@@ -228,8 +228,8 @@ class RetrofitManager {
 
     }
 
-    fun getCommentList(option : String, id : Long,completion: (RESPONSE_STATE, ArrayList<NoticeResponseDTO>?) -> Unit){
-        val call = iRetrofit?.getCommentList(option,id).let{
+    fun getCommentList(id : Long,completion: (RESPONSE_STATE, ArrayList<CommentResponseDTO>?) -> Unit){
+        val call = iRetrofit?.getCommentList(id).let{
             it
         }?: return
         call.enqueue(object : retrofit2.Callback<JsonElement>{
@@ -241,16 +241,13 @@ class RetrofitManager {
                         response.body()?.let{
                             val body = it.asJsonArray
                             Log.d(TAG, "body: ${body}")
-                            val list = ArrayList<NoticeResponseDTO>()
+                            val list = ArrayList<CommentResponseDTO>()
                             body.forEach{
                                     item ->
                                 val resultItemObject = item.asJsonObject
-                                val id = resultItemObject.get("id").asLong
-                                val title = resultItemObject.get("title").asString
+                                val content = resultItemObject.get("content").asString
                                 val writerName = resultItemObject.get("writerName").asString
-                                val views = resultItemObject.get("views").asLong
-                                val date = resultItemObject.get("date").asString
-                                val obj = NoticeResponseDTO(id,title,writerName,views, date)
+                                val obj = CommentResponseDTO(content,writerName)
                                 list.add(obj)
                             }
                             completion(RESPONSE_STATE.OKAY,list)}

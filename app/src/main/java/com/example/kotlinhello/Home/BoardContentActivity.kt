@@ -5,15 +5,21 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinhello.App
 import com.example.kotlinhello.Constants.RESPONSE_STATE
+import com.example.kotlinhello.Home.BoardRecyclerView.CommentRecyclerView.CommentRecyclerViewAdapter
 import com.example.kotlinhello.databinding.ActivityBoardContentBinding
 import com.example.kotlinhello.model.CommentDTO
+import com.example.kotlinhello.model.CommentResponseDTO
 import com.example.kotlinhello.model.NoticeDetailDTO
 import com.example.kotlinhello.retrofit.RetrofitManager
 
 class BoardContentActivity : AppCompatActivity(), View.OnClickListener{
     lateinit var mBinding : ActivityBoardContentBinding
     lateinit var detailBoard : NoticeDetailDTO
+    lateinit var commentList : ArrayList<CommentResponseDTO>
+    lateinit var commentRecyclerViewAdapter: CommentRecyclerViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityBoardContentBinding.inflate(layoutInflater)
@@ -21,6 +27,7 @@ class BoardContentActivity : AppCompatActivity(), View.OnClickListener{
         var bundle = intent.getBundleExtra("board_bundle")
         detailBoard = bundle!!.getSerializable("board_data") as NoticeDetailDTO
         settingUI(detailBoard)
+        getCommentList(detailBoard.id)
         mBinding.submitBtn.setOnClickListener(this)
     }
     //받은 intent로 게시글구성
@@ -52,6 +59,32 @@ class BoardContentActivity : AppCompatActivity(), View.OnClickListener{
 
         })
     }
+    fun getCommentList(id : Long){
+        RetrofitManager.instance.getCommentList(id,completion = {
+                    reponseState,responseBody ->
+                when(reponseState){
+                    RESPONSE_STATE.OKAY ->{
+                        Log.d("TAG", "댓글 로딩 성공 : ${reponseState} ")
+                        this.commentList = responseBody!!
+                        mBinding!!.commentRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                        this.commentRecyclerViewAdapter = CommentRecyclerViewAdapter()
+                        this.commentRecyclerViewAdapter.submitList(commentList)
+                        mBinding!!.commentRecyclerView.adapter = this.commentRecyclerViewAdapter
+                    }
+                    RESPONSE_STATE.CHECK ->{
+                        Log.d("TAG", "댓글 로딩 실패: ${reponseState} ")
+                        Toast.makeText(App.instance,"댓글 로딩 실패",Toast.LENGTH_SHORT).show()
+                    }
+                    RESPONSE_STATE.FAIL -> {
+                        Log.d("TAG", "Server Closed")
+                        Toast.makeText(App.instance,"Server closed",Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+            })
+
+        }
 
     override fun onClick(v: View?) {
         when(v){

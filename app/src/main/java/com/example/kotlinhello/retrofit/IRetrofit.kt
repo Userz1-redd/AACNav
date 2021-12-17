@@ -59,7 +59,7 @@ interface IRetrofit {
     @POST(API.BASE_COMMENT)
     fun postComment(@Body param : CommentDTO) : Call<JsonElement>
     @GET(API.GET_COMMENT)
-    fun getCommentList(@Path("option") option: String,@Path("id") boardId : Long)
+    fun getCommentList(@Path("id") boardId : Long)
      : Call<JsonElement>
 
 
